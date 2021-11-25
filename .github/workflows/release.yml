@@ -3,11 +3,11 @@ on:
     branches:
       - main
 
-name: Upload Release Asset
+name: Build and Upload Release Artifact
 
 jobs:
   build:
-    name: Upload Release Asset
+    name: Build and Upload Release Artifact
     runs-on: ubuntu-latest
     env:
         CHEF_LICENSE: accept-no-persist
@@ -45,3 +45,4 @@ jobs:
           upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing its ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
           asset_path: "*.tgz"
           asset_name: policy-archive.tgz
+          asset_content_type: "application/gzip"
