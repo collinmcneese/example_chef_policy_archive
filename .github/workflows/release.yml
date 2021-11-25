@@ -24,16 +24,16 @@ jobs:
         run: chef install
       - name: Create Chef Policy Export
         run: chef export -a .
-      # - name: Set Version
-      #   run: echo "CURRENT_VER=$(cat VERSION)" >> $GITHUB_ENV
+      - name: Set Version
+        run: echo "CURRENT_VER=$(cat VERSION)" >> $GITHUB_ENV
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: latest
-          release_name: latest
+          tag_name: ${{ $CURRENT_VER }}
+          release_name: ${{ $CURRENT_VER }}
           draft: false
           prerelease: false
       - name: Upload Release Asset
