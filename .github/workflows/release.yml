@@ -1,0 +1,47 @@
+on:
+  push:
+    branches:
+      - main
+
+name: Upload Release Asset
+
+jobs:
+  build:
+    name: Upload Release Asset
+    runs-on: ubuntu-latest
+    env:
+        CHEF_LICENSE: accept-no-persist
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: install chef
+        uses: actionshub/chef-install@main
+        with:
+          project: chef-workstation
+      - name: Linting
+        run: cookstyle
+      - name: Test
+        run: chef install
+      - name: Create Chef Policy Export
+        run: chef export -a .
+      # - name: Set Version
+      #   run: echo "CURRENT_VER=$(cat VERSION)" >> $GITHUB_ENV
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: latest
+          release_name: latest
+          draft: false
+          prerelease: false
+      - name: Upload Release Asset
+        id: upload-release-asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing its ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
+          asset_path: "*.tgz"
+          asset_name: policy-archive.tgz
