@@ -1,5 +1,5 @@
 {
-  "revision_id": "3bc383e5eaa59b824fbd1f69b97ed585ab42a5784dc8d9967c489b04348bd3b9",
+  "revision_id": "81d9ec62322d79daf909a34364438b17000400426af853f7170a626277e1229b",
   "name": "example_policy",
   "run_list": [
     "recipe[log_hello::default]"
@@ -9,14 +9,14 @@
   ],
   "cookbook_locks": {
     "log_hello": {
-      "version": "0.1.1",
-      "identifier": "1b9e12c5415b44d9bfb10f87f7e4331095147da1",
-      "dotted_decimal_identifier": "7773627827182404.61290837136898020.56146313641377",
-      "cache_key": "log_hello-0.1.1-supermarket.chef.io",
-      "origin": "https://supermarket.chef.io:443/api/v1/cookbooks/log_hello/versions/0.1.1/download",
+      "version": "0.1.2",
+      "identifier": "fa2a13c88327e09b4c7c3e820b9c1b89646795a5",
+      "dotted_decimal_identifier": "70415008634447840.43712717898517404.30276908979621",
+      "cache_key": "log_hello-0.1.2-supermarket.chef.io",
+      "origin": "https://supermarket.chef.io:443/api/v1/cookbooks/log_hello/versions/0.1.2/download",
       "source_options": {
-        "artifactserver": "https://supermarket.chef.io:443/api/v1/cookbooks/log_hello/versions/0.1.1/download",
-        "version": "0.1.1"
+        "artifactserver": "https://supermarket.chef.io:443/api/v1/cookbooks/log_hello/versions/0.1.2/download",
+        "version": "0.1.2"
       }
     }
   },
@@ -30,11 +30,11 @@
     "Policyfile": [
       [
         "log_hello",
-        "= 0.1.1"
+        "= 0.1.2"
       ]
     ],
     "dependencies": {
-      "log_hello (0.1.1)": [
+      "log_hello (0.1.2)": [
 
       ]
     }
